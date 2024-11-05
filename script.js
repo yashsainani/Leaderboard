@@ -24,32 +24,22 @@ function updateUI() {
                 <span>${obj.score}</span>
                 <div class="btns">
                     <button type="button">+5</button>
-                    <button type="button">delete</button>
+                    <button type="button">X</button>
                     <button type="button">-5</button>
                 </div>
             </div>
         `;
-        dynamic.innerHTML = info;
-        buttonWorking();
     });
+    dynamic.innerHTML = info;
+    buttonWorking();
 }
 
 function buttonWorking() {
     document.querySelectorAll('.btns').forEach((ele, idx) => {
         ele.addEventListener('click', (event) => {
-            if (event.target.innerText === "+5") {
-                let score = +data[idx].score;
-                score += 5;
-                data[idx].score = score;
-            }
-            else if (event.target.innerText === "-5") {
-                let score = +data[idx].score;
-                score -= 5;
-                data[idx].score = score;
-            }
-            else {
-                data.splice(idx, 1);
-            }
+            if (event.target.innerText === "+5") data[idx].score += 5;
+            else if (event.target.innerText === "-5") data[idx].score -= 5;
+            else data.splice(idx, 1);
             updateUI();
         });
     });
